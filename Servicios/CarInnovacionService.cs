@@ -29,8 +29,12 @@ namespace ApiKnowledgeMap.Servicios
             if (string.IsNullOrWhiteSpace(carInnovacion.Tipo))
                 throw new ArgumentException("El tipo es obligatorio.");
 
+            // Calcular el siguiente ID automáticamente
+            var todos = await _repo.ObtenerTodosAsync();
+            carInnovacion.Id = todos.Any() ? todos.Max(x => x.Id) + 1 : 1;
+
             carInnovacion.Nombre = carInnovacion.Nombre.Trim();
-            carInnovacion.Tipo   = carInnovacion.Tipo.Trim();
+            carInnovacion.Tipo = carInnovacion.Tipo.Trim();
             return await _repo.InsertarAsync(carInnovacion);
         }
 

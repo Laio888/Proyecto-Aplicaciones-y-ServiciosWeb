@@ -29,8 +29,11 @@ namespace ApiKnowledgeMap.Servicios
             if (string.IsNullOrWhiteSpace(practica.Tipo))
                 throw new ArgumentException("El tipo es obligatorio.");
 
+            var todos = await _repo.ObtenerTodosAsync();
+            practica.Id = todos.Any() ? todos.Max(x => x.Id) + 1 : 1;
+
             practica.Nombre = practica.Nombre.Trim();
-            practica.Tipo   = practica.Tipo.Trim();
+            practica.Tipo = practica.Tipo.Trim();
             return await _repo.InsertarAsync(practica);
         }
 

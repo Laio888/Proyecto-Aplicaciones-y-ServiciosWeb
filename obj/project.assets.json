@@ -2242,11 +2242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\ApiKnowledgeMap.csproj",
+      "projectUniqueName": "C:\\Users\\santi\\Desktop\\Proyectos\\Proyecto ASW\\ApiKnowledgeMap.csproj",
       "projectName": "ApiKnowledgeMap",
-      "projectPath": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\ApiKnowledgeMap.csproj",
+      "projectPath": "C:\\Users\\santi\\Desktop\\Proyectos\\Proyecto ASW\\ApiKnowledgeMap.csproj",
       "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\obj\\",
+      "outputPath": "C:\\Users\\santi\\Desktop\\Proyectos\\Proyecto ASW\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
