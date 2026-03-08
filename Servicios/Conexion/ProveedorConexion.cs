@@ -8,15 +8,12 @@
 
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Data;                          // 👈 agregar
+using Microsoft.Data.SqlClient;             // 👈 agregar
 using ApiKnowledgeMap.Servicios.Abstracciones;
 
 namespace ApiKnowledgeMap.Servicios.Conexion
 {
-    /// <summary>
-    /// Implementación concreta que lee "DatabaseProvider" y "ConnectionStrings" desde IConfiguration.
-    /// Responsabilidad única: conectar la configuración JSON con los repositorios que necesitan
-    /// cadenas de conexión.
-    /// </summary>
     public class ProveedorConexion : IProveedorConexion
     {
         private readonly IConfiguration _configuracion;
@@ -29,10 +26,6 @@ namespace ApiKnowledgeMap.Servicios.Conexion
             );
         }
 
-        /// <summary>
-        /// Lee el valor de "DatabaseProvider" desde appsettings.json.
-        /// Si no existe o está vacío, por defecto usa "SqlServer".
-        /// </summary>
         public string ProveedorActual
         {
             get
@@ -42,9 +35,6 @@ namespace ApiKnowledgeMap.Servicios.Conexion
             }
         }
 
-        /// <summary>
-        /// Entrega la cadena de conexión correspondiente al proveedor actual.
-        /// </summary>
         public string ObtenerCadenaConexion()
         {
             string? cadena = _configuracion.GetConnectionString(ProveedorActual);
@@ -60,7 +50,13 @@ namespace ApiKnowledgeMap.Servicios.Conexion
 
             return cadena;
         }
+
+        // 👇 agregar este método
+        public IDbConnection ObtenerConexion()
+        {
+            var conexion = new SqlConnection(ObtenerCadenaConexion());
+            conexion.Open();
+            return conexion;
+        }
     }
-
 }
-

@@ -8,6 +8,7 @@
 // - OCP: Abierta para extensión, cerrada para modificación
 
 using System;
+using System.Data; // 👈 agregar este using
 
 namespace ApiKnowledgeMap.Servicios.Abstracciones
 {
@@ -26,7 +27,11 @@ namespace ApiKnowledgeMap.Servicios.Abstracciones
         /// Obtiene la cadena de conexión correspondiente al proveedor configurado.
         /// </summary>
         string ObtenerCadenaConexion();
+
+        // 👇 Solo esto se agrega
+        /// <summary>
+        /// Abre y devuelve una conexión lista para ejecutar consultas con Dapper.
+        /// </summary>
+        IDbConnection ObtenerConexion();
     }
-
 }
-

@@ -12,6 +12,16 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ApiKnowledgeMap.Modelos;
 
+// Repositorios
+using ApiKnowledgeMap.Repositorios;
+using ApiKnowledgeMap.Repositorios.Abstracciones;
+
+// Servicios
+using ApiKnowledgeMap.Servicios;
+using ApiKnowledgeMap.Servicios.Abstracciones;
+using ApiKnowledgeMap.Servicios.Conexion;
+using ApiKnowledgeMap.Servicios.Politicas;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ---------------------------------------------------------
@@ -26,7 +36,9 @@ builder.Configuration.AddJsonFile(
 // ---------------------------------------------------------
 // SERVICIOS
 // ---------------------------------------------------------
-builder.Services.AddControllers();
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 // CORS — permite consumo desde frontend (cualquier origen en desarrollo)
 builder.Services.AddCors(opts =>
@@ -91,32 +103,29 @@ builder.Services.AddSwaggerGen(opciones =>
 // REGISTRO DE SERVICIOS (Dependency Injection - DIP)
 // -----------------------------------------------------------------
 
-// Política de tablas prohibidas (Singleton: una instancia para toda la app)
-builder.Services.AddSingleton<
-    ApiKnowledgeMap.Servicios.Abstracciones.IPoliticaTablasProhibidas,
-    ApiKnowledgeMap.Servicios.Politicas.PoliticaTablasProhibidasDesdeJson>();
+// ── INFRAESTRUCTURA (Singleton) ───────────────────────────────────
 
-// Servicio CRUD (Scoped: una instancia por request HTTP)
+// Política de tablas prohibidas (una instancia para toda la app)
+builder.Services.AddSingleton<
+    IPoliticaTablasProhibidas,
+    PoliticaTablasProhibidasDesdeJson>();
+
+// Proveedor de conexión (comparte cadena de conexión)
+builder.Services.AddSingleton<
+    IProveedorConexion,
+    ProveedorConexion>();
+
+// ── SERVICIO CRUD GENÉRICO (Scoped) ──────────────────────────────
 builder.Services.AddScoped<
-    ApiKnowledgeMap.Servicios.Abstracciones.IServicioCrud,
-    ApiKnowledgeMap.Servicios.ServicioCrud>();
+    IServicioCrud,
+    ServicioCrud>();
 
-// Proveedor de conexión (Singleton: comparte cadena de conexión)
-builder.Services.AddSingleton<
-    ApiKnowledgeMap.Servicios.Abstracciones.IProveedorConexion,
-    ApiKnowledgeMap.Servicios.Conexion.ProveedorConexion>();
-
-// Lee el proveedor de BD desde la configuración
+// ── REPOSITORIO SEGÚN PROVEEDOR DE BD ────────────────────────────
 var proveedorBD = builder.Configuration.GetValue<string>("DatabaseProvider") ?? "SqlServer";
 
-// Registro automático del repositorio según DatabaseProvider
 switch (proveedorBD.ToLower())
 {
     case "postgres":
-        // Para entregables futuros — implementación PostgreSQL
-        // builder.Services.AddScoped<
-        //     ApiKnowledgeMap.Repositorios.Abstracciones.IRepositorioLecturaTabla,
-        //     ApiKnowledgeMap.Repositorios.RepositorioLecturaPostgreSQL>();
         throw new InvalidOperationException(
             "El repositorio PostgreSQL aún no está implementado. " +
             "Cambia DatabaseProvider a 'SqlServer' o 'LocalDb' en appsettings.json"
@@ -124,7 +133,6 @@ switch (proveedorBD.ToLower())
 
     case "mariadb":
     case "mysql":
-        // Para entregables futuros — implementación MySQL/MariaDB
         throw new InvalidOperationException(
             "El repositorio MySQL/MariaDB aún no está implementado. " +
             "Cambia DatabaseProvider a 'SqlServer' o 'LocalDb' en appsettings.json"
@@ -134,12 +142,34 @@ switch (proveedorBD.ToLower())
     case "sqlserverexpress":
     case "localdb":
     default:
-        // Repositorio de lectura para SQL Server (incluyendo LocalDb)
         builder.Services.AddScoped<
-            ApiKnowledgeMap.Repositorios.Abstracciones.IRepositorioLecturaTabla,
-            ApiKnowledgeMap.Repositorios.RepositorioLecturaSqlServer>();
+            IRepositorioLecturaTabla,
+            RepositorioLecturaSqlServer>();
         break;
 }
+
+// ── ENTIDADES ESPECÍFICAS (Scoped) ───────────────────────────────
+// Patrón: primero el Repositorio, luego el Servicio que lo usa.
+
+// Universidad
+//builder.Services.AddScoped<IUniversidadRepository, UniversidadRepository>();
+//builder.Services.AddScoped<IUniversidadService, UniversidadService>();
+
+// CarInnovacion
+builder.Services.AddScoped<ICarInnovacionRepository, CarInnovacionRepository>();
+builder.Services.AddScoped<ICarInnovacionService, CarInnovacionService>();
+
+// PracticaEstrategia
+builder.Services.AddScoped<IPracticaEstrategiaRepository, PracticaEstrategiaRepository>();
+builder.Services.AddScoped<IPracticaEstrategiaService, PracticaEstrategiaService>();
+
+// Enfoque
+//builder.Services.AddScoped<IEnfoqueRepository, EnfoqueRepository>();
+//builder.Services.AddScoped<IEnfoqueService, EnfoqueService>();
+
+// AspectosNormativos
+//builder.Services.AddScoped<IAspectoNormativoRepository, AspectoNormativoRepository>();
+//builder.Services.AddScoped<IAspectoNormativoService, AspectoNormativoService>();
 
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
@@ -192,4 +222,7 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapRazorPages();
+app.MapControllers();
+app.Run();
 app.Run();
