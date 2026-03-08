@@ -174,3 +174,5 @@ C:\Users\santi\Dropbox\U ITM\Semestre 5\Aplicaciones y Servicios Web\Proyecto AS
 C:\Users\santi\Dropbox\U ITM\Semestre 5\Aplicaciones y Servicios Web\Proyecto ASW\obj\Debug\net9.0\ApiKnowledgeMap.pdb
 C:\Users\santi\Dropbox\U ITM\Semestre 5\Aplicaciones y Servicios Web\Proyecto ASW\obj\Debug\net9.0\ApiKnowledgeMap.genruntimeconfig.cache
 C:\Users\santi\Dropbox\U ITM\Semestre 5\Aplicaciones y Servicios Web\Proyecto ASW\obj\Debug\net9.0\ref\ApiKnowledgeMap.dll
+C:\Users\santi\Dropbox\U ITM\Semestre 5\Aplicaciones y Servicios Web\Proyecto ASW\obj\Debug\net9.0\ApiKnowledgeMap.RazorAssemblyInfo.cache
+C:\Users\santi\Dropbox\U ITM\Semestre 5\Aplicaciones y Servicios Web\Proyecto ASW\obj\Debug\net9.0\ApiKnowledgeMap.RazorAssemblyInfo.cs

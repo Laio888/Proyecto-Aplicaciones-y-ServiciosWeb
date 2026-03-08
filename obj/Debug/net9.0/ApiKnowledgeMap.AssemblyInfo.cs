@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiKnowledgeMap")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41a950ac0b2cfb94d86a2e01dce95504c8cc531e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+200e59dda8e35a8aca665590c345f399f8beb19c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiKnowledgeMap")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiKnowledgeMap")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

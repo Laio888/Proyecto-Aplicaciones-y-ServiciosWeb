@@ -1,0 +1,28 @@
+@page
+@model ApiKnowledgeMap.Pages.IndexModel
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center py-5">
+    <h1>Sistema de Gestión del Conocimiento Universitario</h1>
+    <p class="lead">Selecciona un módulo del menú para comenzar.</p>
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Car. Innovación</h5>
+                    <a href="/CarInnovacion" class="btn btn-primary">Gestionar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Práctica Estrategia</h5>
+                    <a href="/PracticaEstrategia" class="btn btn-primary">Gestionar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
