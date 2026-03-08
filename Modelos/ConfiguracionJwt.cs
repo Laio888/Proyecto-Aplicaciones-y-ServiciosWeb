@@ -29,4 +29,6 @@ namespace ApiKnowledgeMap.Modelos
         /// </summary>
         public int DuracionMinutos { get; set; } = 60;
     }
+
 }
+

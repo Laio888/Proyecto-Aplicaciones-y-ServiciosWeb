@@ -85,4 +85,6 @@ namespace ApiKnowledgeMap.Repositorios.Abstracciones
         /// </summary>
         Task<Dictionary<string, object?>> ObtenerDiagnosticoConexionAsync();
     }
+
 }
+

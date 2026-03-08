@@ -61,4 +61,6 @@ namespace ApiKnowledgeMap.Servicios.Conexion
             return cadena;
         }
     }
+
 }
+

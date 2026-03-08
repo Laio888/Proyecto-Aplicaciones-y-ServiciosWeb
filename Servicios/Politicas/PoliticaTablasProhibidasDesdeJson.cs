@@ -67,4 +67,6 @@ namespace ApiKnowledgeMap.Servicios.Politicas
             return _tablasProhibidas.Count > 0;
         }
     }
+
 }
+

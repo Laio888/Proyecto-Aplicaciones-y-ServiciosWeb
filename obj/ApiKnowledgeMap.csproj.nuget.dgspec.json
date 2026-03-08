@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto-Aplicaciones-y-ServiciosWeb\\ApiKnowledgeMap.csproj": {}
+    "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\ApiKnowledgeMap.csproj": {}
   },
   "projects": {
-    "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto-Aplicaciones-y-ServiciosWeb\\ApiKnowledgeMap.csproj": {
+    "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\ApiKnowledgeMap.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto-Aplicaciones-y-ServiciosWeb\\ApiKnowledgeMap.csproj",
+        "projectUniqueName": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\ApiKnowledgeMap.csproj",
         "projectName": "ApiKnowledgeMap",
-        "projectPath": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto-Aplicaciones-y-ServiciosWeb\\ApiKnowledgeMap.csproj",
+        "projectPath": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\ApiKnowledgeMap.csproj",
         "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto-Aplicaciones-y-ServiciosWeb\\obj\\",
+        "outputPath": "C:\\Users\\santi\\Dropbox\\U ITM\\Semestre 5\\Aplicaciones y Servicios Web\\Proyecto ASW\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

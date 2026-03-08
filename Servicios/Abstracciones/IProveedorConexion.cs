@@ -27,4 +27,6 @@ namespace ApiKnowledgeMap.Servicios.Abstracciones
         /// </summary>
         string ObtenerCadenaConexion();
     }
+
 }
+

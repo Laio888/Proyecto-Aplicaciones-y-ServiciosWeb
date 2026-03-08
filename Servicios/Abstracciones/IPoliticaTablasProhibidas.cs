@@ -22,4 +22,6 @@ namespace ApiKnowledgeMap.Servicios.Abstracciones
         /// <returns>true si la tabla está permitida, false si está prohibida.</returns>
         bool EsTablaPermitida(string nombreTabla);
     }
+
 }
+
