@@ -1,0 +1,20 @@
+@page
+@model ApiKnowledgeMap.Pages.Enfoque.CrearModel
+@{
+    ViewData["Title"] = "Enfoque";
+}
+
+<h2>Enfoque</h2>
+
+<form method="post" class="mt-3">
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Item.Nombre" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea asp-for="Item.Descripcion" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="/Enfoque" class="btn btn-secondary">Cancelar</a>
+</form>
