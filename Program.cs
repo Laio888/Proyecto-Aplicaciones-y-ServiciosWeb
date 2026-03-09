@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ApiKnowledgeMap.Modelos;
+using ApiKnowledgeMap.Repositorios.Abstracciones;
+using ApiKnowledgeMap.Repositorios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,6 +88,8 @@ builder.Services.AddSwaggerGen(opciones =>
         }
     });
 });
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 // -----------------------------------------------------------------
 // REGISTRO DE SERVICIOS (Dependency Injection - DIP)
@@ -150,7 +154,7 @@ builder.Services.Configure<ConfiguracionJwt>(
 
 var configuracionJwt = new ConfiguracionJwt();
 builder.Configuration.GetSection("Jwt").Bind(configuracionJwt);
-
+builder.Services.AddScoped<IRepositorioEnfoque, RepositorioEnfoqueSqlServer>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opciones =>
     {
@@ -169,6 +173,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 var app = builder.Build();
+app.MapRazorPages();
+app.MapDefaultControllerRoute();
 
 // ---------------------------------------------------------
 // MIDDLEWARE (el orden importa)

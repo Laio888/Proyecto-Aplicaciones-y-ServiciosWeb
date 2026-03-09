@@ -81,5 +81,16 @@ namespace ApiKnowledgeMap.Servicios.Abstracciones
             string valorUsuario,
             string valorContrasena
         );
+        /// <summary>
+        /// Verifica si existe un registro con una clave específica.
+        /// </summary>
+        Task<bool> ExisteAsync(
+            string nombreTabla,
+            string? esquema,
+            string nombreClave,
+            string valorClave
+        );
+
+
     }
 }

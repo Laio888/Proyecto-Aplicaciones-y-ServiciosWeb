@@ -229,5 +229,20 @@ namespace ApiKnowledgeMap.Servicios
                 );
             }
         }
+        public async Task<bool> ExisteAsync(
+    string nombreTabla,
+    string? esquema,
+    string nombreClave,
+    string valorClave)
+        {
+            var resultado = await _repositorioLectura.ObtenerPorClaveAsync(
+                nombreTabla,
+                esquema,
+                nombreClave,
+                valorClave
+            );
+
+            return resultado.Count > 0;
+        }
     }
 }

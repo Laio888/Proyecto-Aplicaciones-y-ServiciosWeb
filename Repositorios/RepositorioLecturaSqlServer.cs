@@ -328,7 +328,41 @@ AND COLUMN_NAME = @columna";
                     }
                     else
                     {
-                        comando.Parameters.AddWithValue($"@{kvp.Key}", kvp.Value);
+                        object valor = kvp.Value;
+
+                        if (valor is System.Text.Json.JsonElement json)
+                        {
+                            switch (json.ValueKind)
+                            {
+                                case System.Text.Json.JsonValueKind.String:
+                                    valor = json.GetString();
+                                    break;
+
+                                case System.Text.Json.JsonValueKind.Number:
+                                    if (json.TryGetInt32(out int i))
+                                        valor = i;
+                                    else if (json.TryGetInt64(out long l))
+                                        valor = l;
+                                    else if (json.TryGetDecimal(out decimal d))
+                                        valor = d;
+                                    break;
+
+                                case System.Text.Json.JsonValueKind.True:
+                                case System.Text.Json.JsonValueKind.False:
+                                    valor = json.GetBoolean();
+                                    break;
+
+                                case System.Text.Json.JsonValueKind.Null:
+                                    valor = DBNull.Value;
+                                    break;
+
+                                default:
+                                    valor = json.ToString();
+                                    break;
+                            }
+                        }
+
+                        comando.Parameters.AddWithValue($"@{kvp.Key}", valor ?? DBNull.Value);
                     }
                 }
 
@@ -407,7 +441,41 @@ AND COLUMN_NAME = @columna";
                     }
                     else
                     {
-                        comando.Parameters.AddWithValue($"@{kvp.Key}", kvp.Value);
+                        object valor = kvp.Value;
+
+                        if (valor is System.Text.Json.JsonElement json)
+                        {
+                            switch (json.ValueKind)
+                            {
+                                case System.Text.Json.JsonValueKind.String:
+                                    valor = json.GetString();
+                                    break;
+
+                                case System.Text.Json.JsonValueKind.Number:
+                                    if (json.TryGetInt32(out int i))
+                                        valor = i;
+                                    else if (json.TryGetInt64(out long l))
+                                        valor = l;
+                                    else if (json.TryGetDecimal(out decimal d))
+                                        valor = d;
+                                    break;
+
+                                case System.Text.Json.JsonValueKind.True:
+                                case System.Text.Json.JsonValueKind.False:
+                                    valor = json.GetBoolean();
+                                    break;
+
+                                case System.Text.Json.JsonValueKind.Null:
+                                    valor = DBNull.Value;
+                                    break;
+
+                                default:
+                                    valor = json.ToString();
+                                    break;
+                            }
+                        }
+
+                        comando.Parameters.AddWithValue($"@{kvp.Key}", valor ?? DBNull.Value);
                     }
                 }
 
