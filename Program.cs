@@ -164,8 +164,8 @@ builder.Services.AddScoped<IPracticaEstrategiaRepository, PracticaEstrategiaRepo
 builder.Services.AddScoped<IPracticaEstrategiaService, PracticaEstrategiaService>();
 
 // Enfoque
-//builder.Services.AddScoped<IEnfoqueRepository, EnfoqueRepository>();
-//builder.Services.AddScoped<IEnfoqueService, EnfoqueService>();
+builder.Services.AddScoped<IEnfoqueRepository, EnfoqueRepository>();
+builder.Services.AddScoped<IEnfoqueService, EnfoqueService>();
 
 // AspectosNormativos
 builder.Services.AddScoped<IAspectoNormativoRepository, AspectoNormativoRepository>();
