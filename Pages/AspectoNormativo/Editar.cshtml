@@ -1,0 +1,26 @@
+@page "{id:int}"
+@model ApiKnowledgeMap.Pages.AspectoNormativo.EditarModel
+@{
+    ViewData["Title"] = "Editar Característica de Innovación";
+}
+
+<h2>Editar Característica de Innovación</h2>
+
+<form method="post" class="mt-3">
+    <input type="hidden" asp-for="Item.Id" />
+    
+    <div class="mb-3">
+        <label class="form-label">Tipo</label>
+        <input asp-for="Item.Tipo" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea asp-for="Item.Descripcion" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Item.Fuente" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-warning">Actualizar</button>
+    <a href="/AspectoNormativo" class="btn btn-secondary">Cancelar</a>
+</form>
