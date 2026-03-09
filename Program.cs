@@ -152,8 +152,8 @@ switch (proveedorBD.ToLower())
 // Patrón: primero el Repositorio, luego el Servicio que lo usa.
 
 // Universidad
-//builder.Services.AddScoped<IUniversidadRepository, UniversidadRepository>();
-//builder.Services.AddScoped<IUniversidadService, UniversidadService>();
+builder.Services.AddScoped<IUniversidadRepository, UniversidadRepository>();
+builder.Services.AddScoped<IUniversidadService, UniversidadService>();
 
 // CarInnovacion
 builder.Services.AddScoped<ICarInnovacionRepository, CarInnovacionRepository>();
@@ -168,8 +168,8 @@ builder.Services.AddScoped<IPracticaEstrategiaService, PracticaEstrategiaService
 //builder.Services.AddScoped<IEnfoqueService, EnfoqueService>();
 
 // AspectosNormativos
-//builder.Services.AddScoped<IAspectoNormativoRepository, AspectoNormativoRepository>();
-//builder.Services.AddScoped<IAspectoNormativoService, AspectoNormativoService>();
+builder.Services.AddScoped<IAspectoNormativoRepository, AspectoNormativoRepository>();
+builder.Services.AddScoped<IAspectoNormativoService, AspectoNormativoService>();
 
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
