@@ -37,9 +37,9 @@ builder.Configuration.AddJsonFile(
 // SERVICIOS
 // ---------------------------------------------------------
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
-
+// builder.Services.AddControllersWithViews();
+// builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 // CORS — permite consumo desde frontend (cualquier origen en desarrollo)
 builder.Services.AddCors(opts =>
 {
@@ -197,6 +197,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             )
         };
     });
+    builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -222,7 +223,4 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.MapRazorPages();
-app.MapControllers();
-app.Run();
 app.Run();
