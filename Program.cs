@@ -199,6 +199,9 @@ builder.Services.AddScoped<IAreaConocimientoService, AreaConocimientoService>();
 builder.Services.AddScoped<IProgramaAcRepository, ProgramaAcRepository>();
 builder.Services.AddScoped<IProgramaAcService, ProgramaAcService>();
 
+//ProgramaPe
+builder.Services.AddScoped<IProgramaPeRepository, ProgramaPeRepository>();
+builder.Services.AddScoped<IProgramaPeService, ProgramaPeService>();
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------
