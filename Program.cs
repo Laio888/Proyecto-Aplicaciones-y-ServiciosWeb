@@ -37,9 +37,9 @@ builder.Configuration.AddJsonFile(
 // SERVICIOS
 // ---------------------------------------------------------
 
-// builder.Services.AddControllersWithViews();
-// builder.Services.AddRazorPages();
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
 // CORS — permite consumo desde frontend (cualquier origen en desarrollo)
 builder.Services.AddCors(opts =>
 {
@@ -171,6 +171,14 @@ builder.Services.AddScoped<IEnfoqueService, EnfoqueService>();
 builder.Services.AddScoped<IAspectoNormativoRepository, AspectoNormativoRepository>();
 builder.Services.AddScoped<IAspectoNormativoService, AspectoNormativoService>();
 
+//Facultad
+builder.Services.AddScoped<IFacultadRepository, FacultadRepository>();
+builder.Services.AddScoped<IFacultadService, FacultadService>();
+
+//Programa
+builder.Services.AddScoped<IProgramaRepository, ProgramaRepository>();
+builder.Services.AddScoped<IProgramaService, ProgramaService>();
+
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------
@@ -197,7 +205,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             )
         };
     });
-    builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -223,4 +230,7 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapRazorPages();
+app.MapControllers();
+app.Run();
 app.Run();
