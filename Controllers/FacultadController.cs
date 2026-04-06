@@ -8,44 +8,44 @@ namespace ApiKnowledgeMap.Controllers
     [Route("api/[controller]")]
     public class FacultadController : ControllerBase
     {
-        private readonly IFacultadService _servicio;
+        private readonly IFacultadService _service;
 
-        public FacultadController(IFacultadService servicio)
+        public FacultadController(IFacultadService service)
         {
-            _servicio = servicio;
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Listar()
-            => Ok(await _servicio.ListarAsync());
+        public async Task<IActionResult> ObtenerTodos()
+            => Ok(await _service.ObtenerTodosAsync());
 
         [HttpGet("{id}")]
         public async Task<IActionResult> ObtenerPorId(int id)
         {
-            var item = await _servicio.ObtenerPorIdAsync(id);
+            var item = await _service.ObtenerPorIdAsync(id);
             return item is null ? NotFound() : Ok(item);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Crear([FromBody] Facultad Facultad)
+        public async Task<IActionResult> Crear([FromBody] Facultad facultad)
         {
-            var nuevoId = await _servicio.CrearAsync(Facultad);
-            return CreatedAtAction(nameof(ObtenerPorId), new { id = nuevoId }, Facultad);
+            var id = await _service.CrearAsync(facultad);
+            return CreatedAtAction(nameof(ObtenerPorId), new { id }, facultad);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Actualizar(int id, [FromBody] Facultad Facultad)
+        public async Task<IActionResult> Actualizar(int id, [FromBody] Facultad facultad)
         {
-            Facultad.Id = id;
-            var actualizado = await _servicio.ActualizarAsync(Facultad);
-            return actualizado ? NoContent() : NotFound();
+            facultad.Id = id;
+            var ok = await _service.ActualizarAsync(facultad);
+            return ok ? NoContent() : NotFound();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Eliminar(int id)
         {
-            var eliminado = await _servicio.EliminarAsync(id);
-            return eliminado ? NoContent() : NotFound();
+            var ok = await _service.EliminarAsync(id);
+            return ok ? NoContent() : NotFound();
         }
     }
 }

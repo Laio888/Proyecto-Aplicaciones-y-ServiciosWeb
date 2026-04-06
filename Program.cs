@@ -171,12 +171,13 @@ builder.Services.AddScoped<IEnfoqueService, EnfoqueService>();
 builder.Services.AddScoped<IAspectoNormativoRepository, AspectoNormativoRepository>();
 builder.Services.AddScoped<IAspectoNormativoService, AspectoNormativoService>();
 
-
 //Facultad
-
 builder.Services.AddScoped<IFacultadRepository, FacultadRepository>();
 builder.Services.AddScoped<IFacultadService, FacultadService>();
 
+//Programa
+builder.Services.AddScoped<IProgramaRepository, ProgramaRepository>();
+builder.Services.AddScoped<IProgramaService, ProgramaService>();
 
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT

@@ -13,54 +13,19 @@ namespace ApiKnowledgeMap.Servicios
             _repo = repo;
         }
 
-        public async Task<IEnumerable<Facultad>> ListarAsync()
-            => await _repo.ObtenerTodosAsync();
+        public Task<IEnumerable<Facultad>> ObtenerTodosAsync()
+            => _repo.ObtenerTodosAsync();
 
-        public async Task<Facultad?> ObtenerPorIdAsync(int id)
-        {
-            if (id <= 0) throw new ArgumentException("El ID debe ser mayor a 0.");
-            return await _repo.ObtenerPorIdAsync(id);
-        }
+        public Task<Facultad?> ObtenerPorIdAsync(int id)
+            => _repo.ObtenerPorIdAsync(id);
 
-        public async Task<int> CrearAsync(Facultad Facultad)
-        {
-            if (string.IsNullOrWhiteSpace(Facultad.Nombre))
-                throw new ArgumentException("El nombre es obligatorio.");
-            if (string.IsNullOrWhiteSpace(Facultad.Tipo))
-                throw new ArgumentException("El tipo es obligatorio.");
-            //if (DateTime.IsNull(Facultad.FechaFun))
-              //  throw new ArgumentException("La Fecha es obligatoria");
-            if (Facultad.UniversidadId<= 0)
-                throw new ArgumentException("La Universidad es obligatoria");
+        public Task<int> CrearAsync(Facultad facultad)
+            => _repo.InsertarAsync(facultad);
 
-            // Calcular el siguiente ID automáticamente
-            var todos = await _repo.ObtenerTodosAsync();
-            Facultad.Id = todos.Any() ? todos.Max(x => x.Id) + 1 : 1;
+        public Task<bool> ActualizarAsync(Facultad facultad)
+            => _repo.ActualizarAsync(facultad);
 
-            Facultad.Nombre = Facultad.Nombre.Trim();
-            Facultad.Tipo = Facultad.Tipo.Trim();
-            
-            return await _repo.InsertarAsync(Facultad);
-        }
-
-        public async Task<bool> ActualizarAsync(Facultad Facultad)
-        {
-            if (Facultad.Id <= 0) throw new ArgumentException("ID inválido.");
-            if (string.IsNullOrWhiteSpace(Facultad.Nombre))
-                throw new ArgumentException("El nombre es obligatorio.");
-            if (string.IsNullOrWhiteSpace(Facultad.Tipo))
-                throw new ArgumentException("El tipo es obligatorio.");
-           // if (DateTime.IsNull(Facultad.FechaFun))
-           //     throw new ArgumentException("La Fecha es obligatoria");
-            if (Facultad.UniversidadId <= 0)
-                throw new ArgumentException("La Universidad es obligatoria");
-            return await _repo.ActualizarAsync(Facultad);
-        }
-
-        public async Task<bool> EliminarAsync(int id)
-        {
-            if (id <= 0) throw new ArgumentException("El ID debe ser mayor a 0.");
-            return await _repo.EliminarAsync(id);
-        }
+        public Task<bool> EliminarAsync(int id)
+            => _repo.EliminarAsync(id);
     }
 }
