@@ -179,6 +179,17 @@ builder.Services.AddScoped<IFacultadService, FacultadService>();
 builder.Services.AddScoped<IProgramaRepository, ProgramaRepository>();
 builder.Services.AddScoped<IProgramaService, ProgramaService>();
 
+builder.Services.AddScoped<IAaRcRepository, AaRcRepository>();
+builder.Services.AddScoped<IAaRcService, AaRcService>();
+
+//EnfoqueRc
+builder.Services.AddScoped<IEnfoqueRcRepository, EnfoqueRcRepository>();
+builder.Services.AddScoped<IEnfoqueRcService, EnfoqueRcService>();
+
+//Registro Calificado
+builder.Services.AddScoped<IRegistroCalificadoRepository, RegistroCalificadoRepository>();
+builder.Services.AddScoped<IRegistroCalificadoService, RegistroCalificadoService>();
+
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------
