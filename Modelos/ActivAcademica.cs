@@ -18,6 +18,6 @@ namespace ApiKnowledgeMap.Modelos
 
     public int Disenio {get; set;}
 
-    [ForeignKey("Disenio")] public Programa? _Programa{get;set;}
+    
     }
 }

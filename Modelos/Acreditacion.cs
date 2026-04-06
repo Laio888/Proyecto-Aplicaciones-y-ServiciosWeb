@@ -10,6 +10,6 @@ namespace ApiKnowledgeMap.Modelos
     public string FechaFin { get; set; } = string.Empty;
     public int Programa { get; set; } 
 
-    [ForeignKey("Programa")] public Programa? _Programa {get; set;}
+    
     }
 }
