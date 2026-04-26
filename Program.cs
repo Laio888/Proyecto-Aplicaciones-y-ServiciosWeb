@@ -194,6 +194,29 @@ builder.Services.AddScoped<IEnfoqueRcService, EnfoqueRcService>();
 builder.Services.AddScoped<IRegistroCalificadoRepository, RegistroCalificadoRepository>();
 builder.Services.AddScoped<IRegistroCalificadoService, RegistroCalificadoService>();
 
+//Pasantia
+builder.Services.AddScoped<IPasantiaRepository, PasantiaRepository>();
+builder.Services.AddScoped<IPasantiaService, PasantiaService>();
+
+//Premio
+builder.Services.AddScoped<IPremioRepository, PremioRepository>();
+builder.Services.AddScoped<IPremioService, PremioService>();
+
+//ProgramaCi
+builder.Services.AddScoped<IProgramaCiRepository, ProgramaCiRepository>();
+builder.Services.AddScoped<IProgramaCiService, ProgramaCiService>();
+
+//AreaConocimiento
+builder.Services.AddScoped<IAreaConocimientoRepository, AreaConocimientoRepository>();
+builder.Services.AddScoped<IAreaConocimientoService, AreaConocimientoService>();
+
+//ProgramaAc
+builder.Services.AddScoped<IProgramaAcRepository, ProgramaAcRepository>();
+builder.Services.AddScoped<IProgramaAcService, ProgramaAcService>();
+
+//ProgramaPe
+builder.Services.AddScoped<IProgramaPeRepository, ProgramaPeRepository>();
+builder.Services.AddScoped<IProgramaPeService, ProgramaPeService>();
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------
@@ -248,6 +271,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.MapRazorPages();
-app.MapControllers();
-app.Run();
 app.Run();
