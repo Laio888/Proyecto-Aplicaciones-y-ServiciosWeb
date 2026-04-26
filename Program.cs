@@ -217,6 +217,15 @@ builder.Services.AddScoped<IProgramaAcService, ProgramaAcService>();
 //ProgramaPe
 builder.Services.AddScoped<IProgramaPeRepository, ProgramaPeRepository>();
 builder.Services.AddScoped<IProgramaPeService, ProgramaPeService>();
+//Acreditacion
+builder.Services.AddScoped<IAcreditacionRepository, AcreditacionRepository>();
+builder.Services.AddScoped<IAcreditacionService, AcreditacionService>();
+
+//Activ Academica
+
+builder.Services.AddScoped<IActivAcademicaRepository, ActivAcademicaRepository>();
+builder.Services.AddScoped<IActivAcademicaService, ActivAcademicaService>();
+
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------

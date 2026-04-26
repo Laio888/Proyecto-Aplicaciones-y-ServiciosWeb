@@ -13,5 +13,6 @@ namespace ApiKnowledgeMap.Modelos
         public string FechaActualizacion { get; set; } = string.Empty;
         public string Ciudad { get; set; } = string.Empty;
         public int Facultad { get; set; }
+
     }
 }

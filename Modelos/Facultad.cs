@@ -7,5 +7,6 @@ namespace ApiKnowledgeMap.Modelos
         public string Tipo { get; set; } = string.Empty;
         public DateTime FechaFun { get; set; }
         public int Universidad { get; set; } // FK
+
     }
 }
