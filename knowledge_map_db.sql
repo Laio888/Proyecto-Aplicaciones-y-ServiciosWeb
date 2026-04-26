@@ -844,3 +844,36 @@ CREATE TABLE red_docente (
     ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 GO
+
+-- Tabla rol
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='rol' AND xtype='U')
+CREATE TABLE rol (
+                     id     INT          NOT NULL PRIMARY KEY,
+                     nombre NVARCHAR(45) NOT NULL
+);
+GO
+
+-- Tabla usuario
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='usuario' AND xtype='U')
+CREATE TABLE usuario (
+                         id          INT          NOT NULL PRIMARY KEY IDENTITY(1,1),
+                         nombre      NVARCHAR(60) NOT NULL,
+                         email       NVARCHAR(70) NOT NULL UNIQUE,
+                         contrasena  NVARCHAR(256) NOT NULL
+);
+GO
+
+-- Tabla usuario_rol
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='usuario_rol' AND xtype='U')
+CREATE TABLE usuario_rol (
+                             usuario_id INT NOT NULL,
+                             rol_id     INT NOT NULL,
+                             PRIMARY KEY (usuario_id, rol_id),
+                             CONSTRAINT fk_usuario_rol_usuario FOREIGN KEY (usuario_id)
+                                 REFERENCES usuario (id)
+                                 ON DELETE NO ACTION ON UPDATE NO ACTION,
+                             CONSTRAINT fk_usuario_rol_rol FOREIGN KEY (rol_id)
+                                 REFERENCES rol (id)
+                                 ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+GO
