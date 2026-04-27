@@ -226,6 +226,18 @@ builder.Services.AddScoped<IAcreditacionService, AcreditacionService>();
 builder.Services.AddScoped<IActivAcademicaRepository, ActivAcademicaRepository>();
 builder.Services.AddScoped<IActivAcademicaService, ActivAcademicaService>();
 
+builder.Services.AddScoped<IAlianzaRepository, AlianzaRepository>();
+builder.Services.AddScoped<IAlianzaService, AlianzaService>();
+
+builder.Services.AddScoped<IDocenteDepartamentoRepository, DocenteDepartamentoRepository>();
+builder.Services.AddScoped<IDocenteDepartamentoService, DocenteDepartamentoService>();
+
+builder.Services.AddScoped<IAliadoRepository, AliadoRepository>();
+builder.Services.AddScoped<IAliadoService, AliadoService>();
+
+builder.Services.AddScoped<IDocenteRepository, DocenteRepository>();
+builder.Services.AddScoped<IDocenteService, DocenteService>();
+
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------

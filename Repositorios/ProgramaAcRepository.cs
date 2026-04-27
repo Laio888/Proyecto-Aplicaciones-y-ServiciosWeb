@@ -2,6 +2,7 @@ using Dapper;
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Repositorios.Abstracciones;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using System.Data;
 
 namespace ApiKnowledgeMap.Repositorios
 {
@@ -64,22 +65,35 @@ namespace ApiKnowledgeMap.Repositorios
         public async Task<bool> InsertarAsync(ProgramaAc p)
         {
             using var conn = _conexion.ObtenerConexion();
+
             var filas = await conn.ExecuteAsync(
-                @"INSERT INTO programa_ac (programa, area_conocimiento)
-                  VALUES (@Programa, @AreaConocimiento)",
-                p);
+                "sp_asignar_area_programa",
+                new
+                {
+                    programa = p.Programa,
+                    area = p.AreaConocimiento
+                },
+                commandType: CommandType.StoredProcedure
+            );
+
             return filas > 0;
         }
 
         public async Task<bool> EliminarAsync(int programaId, int areaConocimientoId)
         {
             using var conn = _conexion.ObtenerConexion();
+
             var filas = await conn.ExecuteAsync(
-                @"DELETE FROM programa_ac
-                  WHERE programa          = @ProgramaId
-                    AND area_conocimiento = @AreaConocimientoId",
-                new { ProgramaId = programaId, AreaConocimientoId = areaConocimientoId });
-            return filas > 0;
+                "sp_eliminar_area_programa",
+                new
+                {
+                    programa = programaId,
+                    area = areaConocimientoId
+                },
+                commandType: CommandType.StoredProcedure
+            );
+
+            return true;
         }
     }
 }
