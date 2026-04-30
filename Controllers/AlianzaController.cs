@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AlianzaController : ControllerBase
@@ -32,6 +34,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] Alianza alianza)
         {
             var resultado = await _service.CrearAsync(alianza);
@@ -41,6 +44,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{aliado}/{departamento}/{docente}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int aliado, int departamento, int docente)
         {
             var resultado = await _service.EliminarAsync(aliado, departamento, docente);

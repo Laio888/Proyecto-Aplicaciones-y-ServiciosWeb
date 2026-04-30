@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class EnfoqueRcController : ControllerBase
@@ -27,6 +29,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] EnfoqueRc item)
         {
             var creado = await _servicio.CrearAsync(item);
@@ -46,6 +49,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{enfoque:int}/{registroCalificado:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(
             int enfoque,
             int registroCalificado,
@@ -59,6 +63,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{enfoque:int}/{registroCalificado:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int enfoque, int registroCalificado)
         {
             var eliminado = await _servicio.EliminarAsync(enfoque, registroCalificado);

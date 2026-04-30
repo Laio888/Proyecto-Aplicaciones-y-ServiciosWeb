@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
@@ -16,10 +17,12 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> ObtenerTodos()
             => Ok(await _service.ObtenerTodosAsync());
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> ObtenerPorId(int id)
         {
             var item = await _service.ObtenerPorIdAsync(id);
@@ -27,6 +30,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] ActivAcademica activAcademica)
         {
             var id = await _service.CrearAsync(activAcademica);
@@ -34,6 +38,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(int id, [FromBody] ActivAcademica activAcademica)
         {
             activAcademica.Id = id;
@@ -42,6 +47,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             var ok = await _service.EliminarAsync(id);

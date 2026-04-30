@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class EnfoqueController : ControllerBase
@@ -28,6 +30,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] Enfoque enfoque)
         {
             var nuevoId = await _servicio.CrearAsync(enfoque);
@@ -35,6 +38,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(int id, [FromBody] Enfoque enfoque)
         {
             enfoque.Id = id;
@@ -43,6 +47,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             var eliminado = await _servicio.EliminarAsync(id);

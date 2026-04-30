@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AliadoController : ControllerBase
@@ -32,6 +34,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] Aliado aliado)
         {
             var resultado = await _service.CrearAsync(aliado);
@@ -41,6 +44,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{nit}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(int nit, [FromBody] Aliado aliado)
         {
             var resultado = await _service.ActualizarAsync(nit, aliado);
@@ -50,6 +54,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{nit}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int nit)
         {
             var resultado = await _service.EliminarAsync(nit);

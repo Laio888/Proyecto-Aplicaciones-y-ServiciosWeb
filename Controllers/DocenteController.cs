@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DocenteController : ControllerBase
@@ -32,6 +34,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] Docente docente)
         {
             var resultado = await _service.CrearAsync(docente);
@@ -41,6 +44,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{cedula}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(int cedula, [FromBody] Docente docente)
         {
             var resultado = await _service.ActualizarAsync(cedula, docente);
@@ -50,6 +54,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{cedula}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int cedula)
         {
             var resultado = await _service.EliminarAsync(cedula);

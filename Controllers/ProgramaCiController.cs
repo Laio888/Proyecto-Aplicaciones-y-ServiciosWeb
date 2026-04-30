@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProgramaCiController : ControllerBase
@@ -45,6 +47,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] ProgramaCi programaCi)
         {
             var resultado = await _service.CrearAsync(programaCi);
@@ -56,6 +59,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{programaId}/{carInnovacionId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int programaId, int carInnovacionId)
         {
             var resultado = await _service.EliminarAsync(programaId, carInnovacionId);

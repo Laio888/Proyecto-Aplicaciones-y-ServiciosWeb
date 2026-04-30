@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DocenteDepartamentoController : ControllerBase
@@ -32,6 +34,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] DocenteDepartamento item)
         {
             var resultado = await _service.CrearAsync(item);
@@ -41,6 +44,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{docente}/{departamento}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int docente, int departamento)
         {
             var resultado = await _service.EliminarAsync(docente, departamento);

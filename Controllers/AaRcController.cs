@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AaRcController : ControllerBase
@@ -27,6 +29,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] AaRc item)
         {
             var creado = await _servicio.CrearAsync(item);
@@ -46,6 +49,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{activAcademicasIdcurso:int}/{registroCalificadoCodigo:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(
             int activAcademicasIdcurso,
             int registroCalificadoCodigo,
@@ -59,6 +63,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{activAcademicasIdcurso:int}/{registroCalificadoCodigo:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int activAcademicasIdcurso, int registroCalificadoCodigo)
         {
             var eliminado = await _servicio.EliminarAsync(activAcademicasIdcurso, registroCalificadoCodigo);

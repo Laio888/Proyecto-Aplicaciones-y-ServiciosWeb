@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AreaConocimientoController : ControllerBase
@@ -31,6 +33,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] AreaConocimiento areaConocimiento)
         {
             var id = await _service.CrearAsync(areaConocimiento);
@@ -38,6 +41,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(int id, [FromBody] AreaConocimiento areaConocimiento)
         {
             if (id != areaConocimiento.Id) return BadRequest("El id no coincide.");
@@ -47,6 +51,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int id)
         {
             var resultado = await _service.EliminarAsync(id);

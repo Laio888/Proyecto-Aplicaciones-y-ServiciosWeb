@@ -15,8 +15,7 @@ using ApiKnowledgeMap.Repositorios.Abstracciones;
 using ApiKnowledgeMap.Repositorios;
 
 // Repositorios
-using ApiKnowledgeMap.Repositorios;
-using ApiKnowledgeMap.Repositorios.Abstracciones;
+
 
 // Servicios
 using ApiKnowledgeMap.Servicios;
@@ -237,6 +236,13 @@ builder.Services.AddScoped<IAliadoService, AliadoService>();
 
 builder.Services.AddScoped<IDocenteRepository, DocenteRepository>();
 builder.Services.AddScoped<IDocenteService, DocenteService>();
+
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IRolRepository, RolRepository>();
+
+
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT

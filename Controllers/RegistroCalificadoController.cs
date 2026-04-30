@@ -1,9 +1,11 @@
 using ApiKnowledgeMap.Modelos;
 using ApiKnowledgeMap.Servicios.Abstracciones;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiKnowledgeMap.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class RegistroCalificadoController : ControllerBase
@@ -27,6 +29,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Crear([FromBody] RegistroCalificado item)
         {
             var nuevoCodigo = await _servicio.CrearAsync(item);
@@ -39,6 +42,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpPut("{codigo:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Actualizar(int codigo, [FromBody] RegistroCalificado item)
         {
             item.Codigo = codigo;
@@ -47,6 +51,7 @@ namespace ApiKnowledgeMap.Controllers
         }
 
         [HttpDelete("{codigo:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Eliminar(int codigo)
         {
             var eliminado = await _servicio.EliminarAsync(codigo);
