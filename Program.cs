@@ -244,6 +244,9 @@ builder.Services.AddScoped<IRolRepository, RolRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddScoped<IReporteRepository, ReporteRepository>();
+builder.Services.AddScoped<IReporteService, ReporteService>();
+
 // ---------------------------------------------------------
 // CONFIGURACIÓN JWT
 // ---------------------------------------------------------
